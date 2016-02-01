@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="Windows-1251"?> 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
 
+	<xsl:output method="text" />
+
 	<xsl:template match="*" mode="x">
 		<xsl:text>!@@!</xsl:text>
 		<xsl:value-of select="name()"/>
@@ -8,23 +10,23 @@
 
 	<xsl:template match="*[name() = 'SuppressMessage']">
 		<xsl:text>[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("</xsl:text>
-		<xsl:value-of select="@Category" />
+		<xsl:value-of select="@Category" disable-output-escaping="yes" />
 		<xsl:text>", "</xsl:text>
-		<xsl:value-of select="@Rule" />
+		<xsl:value-of select="@Rule" disable-output-escaping="yes" />
 		<xsl:text>"</xsl:text>
 		<xsl:if test="not(@MessageId = '')">
 			<xsl:text>, MessageId="</xsl:text>
-			<xsl:value-of select="@MessageId" />
+			<xsl:value-of select="@MessageId" disable-output-escaping="yes" />
 			<xsl:text>"</xsl:text>
 		</xsl:if>
 		<xsl:if test="not(@Scope = '')">
 			<xsl:text>, Scope="</xsl:text>
-			<xsl:value-of select="@Scope" />
+			<xsl:value-of select="@Scope" disable-output-escaping="yes" />
 			<xsl:text>"</xsl:text>
 		</xsl:if>
 		<xsl:if test="not(@Target = '')">
 			<xsl:text>, Target="</xsl:text>
-			<xsl:value-of select="@Target" />
+			<xsl:value-of select="@Target" disable-output-escaping="yes" />
 			<xsl:text>"</xsl:text>
 		</xsl:if>
 		<xsl:text>)]</xsl:text>
